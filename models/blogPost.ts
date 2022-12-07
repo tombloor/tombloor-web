@@ -1,9 +1,13 @@
 
 
-export interface BlogPost {
-    slug: string,
+export interface BlogPostMeta {
     title: string,
     published: boolean,
     publishDate: Date,
-    content: JSX.Element
+}
+
+export interface BlogPost {
+    meta: BlogPostMeta,
+    slug: string,
+    content: string
 }

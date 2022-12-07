@@ -1,45 +1,54 @@
 import { GetStaticPaths, GetStaticProps } from "next"
+import { BlogPost } from "../../models/blogPost"
+import { getPostBySlug, getPosts } from "../../services/blog/posts";
+
+import { serialize } from 'next-mdx-remote/serialize'
+import { MDXRemote } from 'next-mdx-remote'
 
 interface BlogPostProps {
-    slug: string,
-    title: string,
-    content: string
+    post: BlogPost,
+    compiledMdx: string
+}
+
+interface BlogPostPathParams {
+    slug: string
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    // This will come from the file system, looking at the data/posts folder and reading all MDX files
+    const posts = getPosts();
+
+    const paths = posts.map((post, index, arr) => {
+        return { params: { slug: post.slug } }
+    });
 
     return {
-        paths: [
-            { params: { slug: 'test-1', path:'test-1.mdx' }}, 
-            { params: { slug: 'test-2', path:'test-2.mdx' }}
-        ],
+        paths: paths,
         fallback: false // Return 404 if page not found, ie build only paths in the array
     }
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-    // Get mdx file with context.params.path
+    //https://blog.jetbrains.com/webstorm/2021/10/building-a-blog-with-next-js-and-mdx/#getting_our_postpage_props_with_getstaticprops
 
-    // Read it to get the props to pass to the page component
-
-    let pageProps: BlogPostProps = {
-        title: 'Test 1',
-        slug: 'test-1',
-        content: 'abc'
-    }
-
+    const slug: string = context.params!.slug as string;
+    const post = getPostBySlug(slug);
+    const compiledMdx = await serialize(post.content)
+    
     return {
-        props: pageProps
+        props: { 
+            post: post,
+            compiledMdx: compiledMdx.compiledSource
+        }
     }
 }
 
-export default function BlogPost(props: BlogPostProps) {
-    
+export default function BlogPostPage(props: BlogPostProps) {
+    const { post, compiledMdx } = props;
 
     return (
         <div>
-            {props.content}
+            <h2>{post.meta.title}</h2>
+            <MDXRemote compiledSource={compiledMdx}></MDXRemote>
         </div>
     )
 }
