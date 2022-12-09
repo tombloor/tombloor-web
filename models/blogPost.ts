@@ -3,7 +3,7 @@
 export interface BlogPostMeta {
     title: string,
     published: boolean,
-    publishDate: Date,
+    date: string,
 }
 
 export interface BlogPost {

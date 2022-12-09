@@ -28,8 +28,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-    //https://blog.jetbrains.com/webstorm/2021/10/building-a-blog-with-next-js-and-mdx/#getting_our_postpage_props_with_getstaticprops
-
     const slug: string = context.params!.slug as string;
     const post = getPostBySlug(slug);
     const compiledMdx = await serialize(post.content)
