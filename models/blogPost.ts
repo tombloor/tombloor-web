@@ -1,3 +1,4 @@
+import { MDXRemoteSerializeResult } from "next-mdx-remote";
 
 
 export interface BlogPostMeta {
@@ -9,5 +10,6 @@ export interface BlogPostMeta {
 export interface BlogPost {
     meta: BlogPostMeta,
     slug: string,
-    content: string
+    //content: string,
+    mdxSource: MDXRemoteSerializeResult
 }

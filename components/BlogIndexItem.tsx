@@ -11,7 +11,7 @@ export default function BlogIndexItem(props: BlogIndexItemProps) {
     return (
         <div>
             <Link className="text-5xl" href={'/blog/' + post.slug}>{post.meta.title}</Link>
-            <p className="text-xl mt-2">{post.meta.date}</p>
+            <p className="text-lg mt-2">{post.meta.date}</p>
         </div>
     )
 }

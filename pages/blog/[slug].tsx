@@ -4,6 +4,9 @@ import { getPostBySlug, getPosts } from "../../services/blog/posts";
 
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
+import PageTitle from "../../components/PageTitle"
+
+import styles from '../../styles/post.module.css'
 
 interface BlogPostProps {
     post: BlogPost,
@@ -15,7 +18,7 @@ interface BlogPostPathParams {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const posts = getPosts();
+    const posts = await getPosts();
 
     const paths = posts.map((post, index, arr) => {
         return { params: { slug: post.slug } }
@@ -29,13 +32,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
     const slug: string = context.params!.slug as string;
-    const post = getPostBySlug(slug);
-    const compiledMdx = await serialize(post.content)
+    const post = await getPostBySlug(slug);
     
     return {
         props: { 
             post: post,
-            compiledMdx: compiledMdx.compiledSource
+            compiledMdx: post.mdxSource.compiledSource
         }
     }
 }
@@ -44,9 +46,13 @@ export default function BlogPostPage(props: BlogPostProps) {
     const { post, compiledMdx } = props;
 
     return (
-        <div>
-            <h2>{post.meta.title}</h2>
-            <MDXRemote compiledSource={compiledMdx}></MDXRemote>
+        <div className={styles.post + " container max-w-3xl mx-auto p-4 flex flex-col items-center"}>
+            <PageTitle title="Tom Bloor's Blog"></PageTitle>
+            
+            <div className="w-full">
+                <h2 className='text-4xl'>{post.meta.title}</h2>
+                <MDXRemote compiledSource={compiledMdx}></MDXRemote>
+            </div>
         </div>
     )
 }

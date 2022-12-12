@@ -8,16 +8,6 @@ export default function Home() {
     { text: 'Projects', href: '/projects' },
   ];
 
-  let menuLinks: JSX.Element[] = [];
-
-  for (let link of links) {
-    menuLinks.push(
-      <li>
-        <Link href={link.href}>{link.text}</Link>
-      </li>
-    );
-  }
-
   return (
     <div>
       <Head>
@@ -36,7 +26,14 @@ export default function Home() {
 
         <nav className='text-2xl mt-12'>
           <ul className='flex space-x-8'>
-            { menuLinks }
+            { links.map((link, index) => {
+                return (
+                  <li key={index}>
+                    <Link href={link.href}>{link.text}</Link>
+                  </li>
+                )
+              })
+            }
           </ul>
         </nav>
 
