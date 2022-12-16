@@ -11,7 +11,7 @@ export interface BlogIndexProps {
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-    const posts = getPosts();
+    const posts = await getPosts();
 
     return {
         props: {
