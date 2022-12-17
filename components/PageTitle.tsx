@@ -7,6 +7,6 @@ export default function PageTitle(props: PageTitleProps) {
     const { title } = props;
 
     return (
-        <h1 className="text-6xl my-10">{ title }</h1>
+        <h1 className="my-10">{ title }</h1>
     )
 }
