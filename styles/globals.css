@@ -22,10 +22,12 @@ h2 {
 
 h3 {
   @apply text-4xl;
+  @apply pt-8;
 }
 
 h4 {
   @apply text-2xl;
+  @apply pt-4;
 }
 
 a {
