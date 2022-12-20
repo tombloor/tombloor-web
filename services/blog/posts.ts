@@ -10,11 +10,13 @@ const postsDir = path.join(path.resolve('./'), "data", "posts");
 export const getPosts = async (): Promise<BlogPost[]> => {
     const files = fs.readdirSync(postsDir);
 
-    const posts = files.map<Promise<BlogPost>>((filename, index, arr) => {
+    const promises = files.map<Promise<BlogPost>>((filename, index, arr) => {
         return mdxToBlogPost(postsDir, filename);
     });
 
-    return await Promise.all(posts);
+    const posts = await Promise.all(promises);
+
+    return posts.filter(p => p.meta.published === true);
 }
 
 export const getPostBySlug = async (slug: string): Promise<BlogPost> => {
