@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  box-sizing: border-box;
+}
+
 html,
 body {
   padding: 0;
@@ -35,8 +39,11 @@ a {
   text-decoration: none;
 }
 
-* {
-  box-sizing: border-box;
+pre {
+  @apply bg-gray-200;
+  @apply p-3;
+  @apply my-3;
+  @apply rounded-lg;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -46,5 +53,8 @@ a {
   body {
     color: white;
     background: black;
+  }
+  pre {
+    @apply bg-gray-700;
   }
 }

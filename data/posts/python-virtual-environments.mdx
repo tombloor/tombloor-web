@@ -23,15 +23,21 @@ Wouldn't it be nice if you could have completely separate Python environment for
 
 In the later version of Python (3.x.x and up) setting up a virtual environment has almost become too easy. We can make use of a built in Python module called `venv` which will handle creating a virtual copy of our current Python installation and saving it into a folder of our choosing.
 
-`python -m venv myVenvFolder`
+```bash
+python -m venv myVenvFolder
+```
 
 Once the environment is created, you need to make sure to activate it before you try to install any packages or run you project.
 
 #### Unix
-`. myVenvFolder/Scripts/activate`
+```bash
+. myVenvFolder/Scripts/activate
+```
 
 #### Windows
-`myVenvFolder\Scripts\activate.bat`
+```batch
+myVenvFolder\Scripts\activate.bat
+```
 
 This should change your terminal prompt so that you can visually see that the virtual environment is currently active. If you want to leave your virtual environment at any point you can just run the `deactivate` command.
 
