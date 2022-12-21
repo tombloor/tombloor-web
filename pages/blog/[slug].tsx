@@ -50,7 +50,7 @@ export default function BlogPostPage(props: BlogPostProps) {
             <PageTitle title="Tom Bloor's Blog"></PageTitle>
             
             <div className="w-full">
-                <h2 className='text-4xl'>{post.meta.title}</h2>
+                <h2>{post.meta.title}</h2>
                 <MDXRemote compiledSource={compiledMdx}></MDXRemote>
             </div>
         </div>

@@ -1,34 +1,53 @@
 ---
-title: Understanding Python Virtual Environments
+title: Python Virtual Environments
 date: 2022-12-15 21:15
 published: true
 ---
 
-In my opinion, anyone who is writing code in Python should be using virtual environments. They are a relatively low effort way to prevent major future headaches, especially if you find yourself working on multiple separate projects in the same dev environment. The number one benefit of using virtual environments in all of your projects is that you can quickly and reliably stand up your project on a completely different computer without worrying about installing any dependencies that could break other projects. Let's take a look at a pretty common example to see what I mean.
+In my opinion, anyone who is writing code in Python should be using virtual environments. 
+They are a relatively low effort way to prevent major future headaches, especially if you find yourself working on 
+multiple separate projects in the same dev environment. The number one benefit of using virtual environments in all of 
+your projects is that you can quickly and reliably stand up your project on a completely different computer without 
+worrying about installing any dependencies that could break other projects. Let's take a look at a pretty common 
+example to see what I mean.
 
 ### Separating dependencies between projects
 
-Say you have a completely fresh installation of Python on your PC, and you eagerly get to work on a brand new project, which we will call project A. You install a handful of packages (package 1, 2 and 3) and all is well.
+Say you have a completely fresh installation of Python on your PC, and you eagerly get to work on a brand new project, 
+which we will call project A. You install a handful of packages (package 1, 2 and 3) and all is well.
 
-A week later you start work on a new project (project B). This project also requires package 2, but the functionality you need doesn't work in the latest version, so you downgrade to an earlier version and happily continue your work.
+A week later you start work on a new project (project B). This project also requires package 2, but the functionality 
+you need doesn't work in the latest version, so you downgrade to an earlier version and happily continue your work.
 
-A further week goes by and you come back to add a new feature to Project A, but suddenly something is wrong, the project no longer runs because you're trying to call a function in package 2 that doesn't exist. You hadn't made any changes to Project A, so why has it now suddenly stopped working? Well the answer is because you have no separation between you're projects, they're all trying to run in the same Python environment, with the same packages. Imagine if you're trying to juggle this kind of setup with 10 or more projects and you can clearly see how it's impossible to manage after a while.
+A further week goes by and you come back to add a new feature to Project A, but suddenly something is wrong, the project
+no longer runs because you're trying to call a function in package 2 that doesn't exist. You hadn't made any changes to 
+Project A, so why has it now suddenly stopped working? Well the answer is because you have no separation between your 
+projects, they're all trying to run in the same Python environment, with the same packages. Imagine if you're trying to 
+juggle this kind of setup with 10 or more projects and you can clearly see how it's impossible to manage after a while.
 
 ### Virtual environments to the rescue
 
-Wouldn't it be nice if you could have completely separate Python environment for each of your projects so that they could have their own independent requirements and wouldn't step on each others toes. Well that is exactly where Virtual Environments come in. At a very high level, a virtual environment is a separate copy of your Python installation which you can create specifically to run one project and manage it's packages separately from every other project on your machine. 
+Wouldn't it be nice if you could have completely separate Python environment for each of your projects so that they 
+could have their own independent requirements and wouldn't step on each others toes. Well that is exactly where Virtual 
+Environments come in. At a very high level, a virtual environment is a separate copy of your Python installation which 
+you can create specifically to run one project and manage it's packages separately from every other project on your 
+machine. 
 
-( NEED A MORE VISUAL EXAMPLE HERE, MAYBE A SEQUENCE CHART OR SOMETHING )
+By making use of virtual environments you can confidently add, remove, upgrade or downgrade packages in your project
+without worrying that you're breaking a completely unrelated project elsewhere on your machine.  
 
 ### How to set up a Virtual Environment
 
-In the later version of Python (3.x.x and up) setting up a virtual environment has almost become too easy. We can make use of a built in Python module called `venv` which will handle creating a virtual copy of our current Python installation and saving it into a folder of our choosing.
+In the later version of Python (3.x.x and up) setting up a virtual environment has almost become too easy. We can make 
+use of a built in Python module called `venv` which will handle creating a virtual copy of our current Python 
+installation and saving it into a folder of our choosing.
 
 ```bash
 python -m venv myVenvFolder
 ```
 
-Once the environment is created, you need to make sure to activate it before you try to install any packages or run you project.
+Once the environment is created, you need to make sure to activate it before you try to install any packages or run 
+you project.
 
 #### Unix
 ```bash
@@ -40,7 +59,8 @@ Once the environment is created, you need to make sure to activate it before you
 myVenvFolder\Scripts\activate.bat
 ```
 
-This should change your terminal prompt so that you can visually see that the virtual environment is currently active. If you want to leave your virtual environment at any point you can just run the `deactivate` command.
+This should change your terminal prompt so that you can visually see that the virtual environment is currently active. 
+If you want to leave your virtual environment at any point you can just run the `deactivate` command.
 
 ### Staying organized
 
@@ -55,7 +75,10 @@ Some people like to have one big folder that they put all of their environments 
 	- ... etc
 ```
 
-I'm personally not a fan of this approach. I prefer to keep my virtual environment right next to the project I'm working on. There's a couple of reasons for this perference, first of all I think it's just cleaner and easier to manage. Secondly, if you're working with an IDE such as `VsCode`, it will often detect a virtual environment that is within your project folder and automatically activate it for you.
+I'm personally not a fan of this approach. I prefer to keep my virtual environment right next to the project I'm working 
+on. There's a couple of reasons for this perference, first of all I think it's just cleaner and easier to manage. 
+Secondly, if you're working with an IDE such as `vscode`, it will often detect a virtual environment that is within your
+project folder and automatically activate it for you.
 
 ```
 -Project1
