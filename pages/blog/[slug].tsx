@@ -7,6 +7,7 @@ import { MDXRemote } from 'next-mdx-remote'
 import PageTitle from "../../components/PageTitle"
 
 import styles from '../../styles/post.module.css'
+import Link from "next/link";
 
 interface BlogPostProps {
     post: BlogPost,
@@ -47,10 +48,12 @@ export default function BlogPostPage(props: BlogPostProps) {
 
     return (
         <div className={styles.post + " container max-w-3xl mx-auto p-4 flex flex-col items-center"}>
-            <PageTitle title="Tom Bloor's Blog"></PageTitle>
+            <Link href='/blog'>
+                <PageTitle title="Tom Bloor's Blog"></PageTitle>
+            </Link>
             
             <div className="w-full">
-                <h2 className='text-4xl'>{post.meta.title}</h2>
+                <h2>{post.meta.title}</h2>
                 <MDXRemote compiledSource={compiledMdx}></MDXRemote>
             </div>
         </div>
