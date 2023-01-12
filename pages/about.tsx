@@ -18,24 +18,22 @@ export default function About() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <main className='h-screen flex flex-col items-center justify-center font-bold text-xl text-center'>
-                <div className='p-4'>
+            <main className='h-screen flex flex-col items-center justify-center font-bold text-xl text-center p-4 fade-container'>
                     <h1 className='p-4'>Hi!</h1>
                     <p className='p-4'>
                         I am a Full Stack Software Engineer with over 10 years of professional work experience.
                     </p>
                     <p className='p-4'>At the moment I'm mainly working with (but not limited to):</p>
-                    <ul className='p-4 list-disc w-fit mx-auto'>
+                    <ul className='p-4 list-disc w-fit mx-auto text-left'>
                         <li>.NET</li>
                         <li>Postgres</li>
                         <li>Next.js</li>
                         <li>Firebase</li>
                     </ul>
                     <p className='p-4'>
-                        I'm recently started a casual blog for programming and other interests of mine. Please stop
+                        I recently started a casual blog for programming and other interests of mine. Please stop
                         by now and again to see what I'm up to.
                     </p>
-                </div>
 
                 <nav className='text-2xl mt-12'>
                     <ul className='flex space-x-8'>
