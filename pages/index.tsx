@@ -15,7 +15,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className='w-screen h-screen flex flex-col items-center justify-center font-bold text-center'>
+      <main className='w-screen h-screen flex flex-col items-center justify-center font-bold text-center fade-container'>
         <h1 className='text-8xl'>
           Tom Bloor
         </h1>
